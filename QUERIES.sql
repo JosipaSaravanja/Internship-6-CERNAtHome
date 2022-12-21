@@ -87,4 +87,8 @@ ORDER BY decade DESC;
 
 SELECT s.FirstName, s.LastName FROM Scientists s
 JOIN PapersScientists ps ON ps.ScientistId=s.ScientistId
+JOIN Papers p ON p.PaperId=ps.PaperId
+GROUP BY s.ScientistId
+ORDER BY SUM(SQRT(p.NumOfQuotes)/(Select Count(*) FROM PapersScientists pss WHERE (pss.PaperId=p.PaperId)))
+LIMIT(10);
 

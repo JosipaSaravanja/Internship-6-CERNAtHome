@@ -62,3 +62,10 @@ CREATE TABLE PapersScientists(
     ScientistId INT NOT NULL REFERENCES Scientists(ScientistId) ON DELETE CASCADE,
     PRIMARY KEY(PaperId, ScientistId)
 )
+
+INSERT INTO Countries (CountryName, CountryPopulation, CountryPPP) VALUES
+('Kina', '1439323776', '16842'),
+('Indija', '1380004385', '7166'),
+('SAD', '331002651', '59928'),
+('Brazil', '212559417', '15553'),
+('Japan', '126476461', '42067');
