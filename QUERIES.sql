@@ -45,7 +45,8 @@ FROM Countries c
 JOIN Scientists s ON s.CountryId=c.CountryId
 JOIN PapersScientists ps ON ps.ScientistId=s.ScientistId
 JOIN Papers p ON p.PaperId=ps.PaperId
-GROUP BY c.CountryName;
+GROUP BY c.CountryName
+Order By COUNT(p.PaperId) DESC;
 
 /*6. prvi objavljeni rad po svakoj zemlji*/
 
@@ -64,7 +65,7 @@ SELECT c.CityName FROM Cities c
 JOIN Hotels h ON h.CityId=h.CityId
 JOIN Scientists s ON s.HotelId = h.HotelId
 GROUP BY c.CityName
-ORDER BY Count(s.ScientistId);
+ORDER BY Count(s.ScientistId) DESC;
 
 /*8. prosječan broj citata radova po svakom akceleratoru*/
 
