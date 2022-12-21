@@ -19,3 +19,14 @@ c.CountryName,
 c.CountryPPP
 FROM Scientists s
 JOIN Countries c ON c.CountryId = s.CountryId;
+
+/*3. svaku kombinaciju projekta i akceleratora, pri čemu nas zanimaju samo nazivi; u slučaju 
+da projekt nije vezan ni za jedan akcelerator, svejedno ga ispiši uz ime akceleratora ‘NEMA GA’.*/
+
+SELECT
+a.AcceleratorName,
+COALESCE(p.ProjectName, 'Nema ga')
+FROM AcceleratorsProjects ap
+JOIN Accelerators a ON a.AcceleratorId=ap.AcceleratorId
+JOIN Projects p ON p.ProjectId=ap.ProjectId;
+
