@@ -83,3 +83,8 @@ GROUP BY s.Field, decade, s.Gender
 HAVING COUNT(s.ScientistId) >=20
 ORDER BY decade DESC;
 
+/*BONUS 1. prikaži 10 najbogatijih znanstvenika, ako po svakom radu dobije brojCitatabrojZnanstvenikaPoRadu €*/
+
+SELECT s.FirstName, s.LastName FROM Scientists s
+JOIN PapersScientists ps ON ps.ScientistId=s.ScientistId
+
