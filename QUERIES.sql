@@ -35,6 +35,7 @@ JOIN Projects p ON p.ProjectId=ap.ProjectId;
 SELECT pr.ProjectName FROM Projects pr
 JOIN Papers pa ON pa.ProjectId=pr.ProjectId 
 WHERE (DATE_PART('year', pa.PublishDate) BETWEEN 2015 AND 2017);
+
 /*5. U istoj tablici po zemlji broj radova i najpopularniji rad znanstvenika 
 iste zemlje, pri čemu je najpopularniji rad onaj koji ima najviše citata*/
 
@@ -45,3 +46,14 @@ JOIN Scientists s ON s.CountryId=c.CountryId
 JOIN PapersScientists ps ON ps.ScientistId=s.ScientistId
 JOIN Papers p ON p.PaperId=ps.PaperId
 GROUP BY c.CountryName;
+
+/*6. prvi objavljeni rad po svakoj zemlji*/
+
+SELECT c.CountryName, 
+MIN(p.PublishDate),
+(SELECT pa.PaperName FROM Papers pa WHERE (pa.PublishDate = MIN(p.PublishDate)))
+FROM Countries c
+JOIN Scientists s ON s.CountryId =c.CountryId
+Join PapersScientists ps ON ps.ScientistId=s.ScientistId
+JOIN Papers p ON p.PaperId=ps.PaperId
+GROUP BY c.CountryId;
