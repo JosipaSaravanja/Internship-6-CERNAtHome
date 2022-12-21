@@ -65,3 +65,21 @@ JOIN Hotels h ON h.CityId=h.CityId
 JOIN Scientists s ON s.HotelId = h.HotelId
 GROUP BY c.CityName
 ORDER BY Count(s.ScientistId);
+
+/*8. prosječan broj citata radova po svakom akceleratoru*/
+
+SELECT a.AcceleratorName, ROUND(p.NumOfQuotes, 2) as averagenumberofquotes  FROM Accelerators a
+JOIN AcceleratorsProjects ap ON ap.AcceleratorId=a.AcceleratorId
+JOIN Projects pr ON pr.ProjectId=ap.ProjectId
+JOIN Papers p ON p.ProjectId=pr.ProjectId
+GROUP BY a.AcceleratorName, p.NumOfQuotes;
+
+
+/*9. broj znanstvenika po struci, desetljeću rođenja i spolu; u slučaju da je broj znanstvenika 
+manji od 20, ne prikazuj kategoriju; poredaj prikaz po desetljeću rođenja*/
+
+SELECT s.Field, DATE_PART('decade', (s.BirthDate)) as decade, s.Gender FROM Scientists s
+GROUP BY s.Field, decade, s.Gender
+HAVING COUNT(s.ScientistId) >=20
+ORDER BY decade DESC;
+
