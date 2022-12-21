@@ -57,3 +57,11 @@ JOIN Scientists s ON s.CountryId =c.CountryId
 Join PapersScientists ps ON ps.ScientistId=s.ScientistId
 JOIN Papers p ON p.PaperId=ps.PaperId
 GROUP BY c.CountryId;
+
+/*7. gradove po broju znanstvenika koji trenutno u njemu borave*/
+
+SELECT c.CityName FROM Cities c 
+JOIN Hotels h ON h.CityId=h.CityId
+JOIN Scientists s ON s.HotelId = h.HotelId
+GROUP BY c.CityName
+ORDER BY Count(s.ScientistId);
