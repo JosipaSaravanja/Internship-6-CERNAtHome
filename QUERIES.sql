@@ -30,3 +30,8 @@ FROM AcceleratorsProjects ap
 JOIN Accelerators a ON a.AcceleratorId=ap.AcceleratorId
 JOIN Projects p ON p.ProjectId=ap.ProjectId;
 
+/*4. Sve projekte kojima je bar jedan od radova izašao između 2015. i 2017.*/
+
+SELECT pr.ProjectName FROM Projects pr
+JOIN Papers pa ON pa.ProjectId=pr.ProjectId 
+WHERE (DATE_PART('year', pa.PublishDate) BETWEEN 2015 AND 2017);
