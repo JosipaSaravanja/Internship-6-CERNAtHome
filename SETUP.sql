@@ -44,3 +44,21 @@ CREATE TABLE Hotels(
     CityId INT NOT NULL REFERENCES Cities(CityId)  ON DELETE CASCADE,
     Capacity INT NOT NULL CHECK (capacity > 0)
 );
+
+
+CREATE TABLE Scientists(
+    ScientistId SERIAL PRIMARY KEY,
+    FirstName VARCHAR(30) NOT NULL,
+    LastName VARCHAR(30) NOT NULL,
+    BirthDate DATE NOT NULL,
+    CountryId INT NOT NULL REFERENCES Countries(CountryId)  ON DELETE CASCADE,
+    Gender GENDERS NOT NULL,
+    Field FIELDS NOT NULL,
+    HotelId INT NOT NULL REFERENCES Hotels(HotelId)
+);
+
+CREATE TABLE PapersScientists(
+    PaperId INT NOT NULL REFERENCES Papers(PaperId) ON DELETE CASCADE,
+    ScientistId INT NOT NULL REFERENCES Scientists(ScientistId) ON DELETE CASCADE,
+    PRIMARY KEY(PaperId, ScientistId)
+)
