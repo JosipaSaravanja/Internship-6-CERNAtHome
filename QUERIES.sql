@@ -7,3 +7,15 @@ p.PublishDate,
  WHERE(ps.ScientistId = s.ScientistId)) AS Scientists 
 FROM PapersScientists ps
 JOIN Papers p ON ps.PaperId = p.PaperId;
+
+/*2. Ime, prezime, spol (ispisati ‘MUŠKI’, ‘ŽENSKI’, ‘NEPOZNATO’, 
+‘OSTALO’;), ime države i  PPP/capita iste svakom znanstveniku*/
+
+SELECT 
+s.FirstName,
+s.LastName,
+s.Gender,
+c.CountryName,
+c.CountryPPP
+FROM Scientists s
+JOIN Countries c ON c.CountryId = s.CountryId;
